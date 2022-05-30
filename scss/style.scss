@@ -1,0 +1,118 @@
+@import "variables";
+
+body{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: $negro;
+}
+
+input{
+    padding: 5px;
+    border: 1px solid $verdeOscuro;
+    &[type="submit" i]{
+        border: none;
+        cursor: pointer;
+    }
+}
+label{
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+
+.button{
+    background-color: $verdeClaro;
+    display: block;
+    color: $gris;
+    outline: none;
+    margin-top: 20px;
+    min-width: 150px;
+    max-width: max-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+    &:active{
+        background-color: $verdeOscuro;
+    }
+}
+
+header#header{
+    background-color: $negro;
+    a{
+        color: $blanco;
+    }
+}
+
+main#index{
+    section{
+        min-height: 60vh;
+    }
+}
+
+main#administracion{
+    .row{
+        min-height: 100vh;
+        #navegacion{
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            background-color: $verdeOscuro;
+            line-height: 3rem;
+            a{
+                color: $blanco;
+                font-weight: 500;
+                font-size: 1.5rem;
+            }
+        }
+    }
+    div.contenedor{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        gap: 20px;
+    }
+    div.contenedor > div.tarjeta{
+        background-color: $verdeClaro;
+        padding: 20px;
+        max-width: 250px;
+        color: $blanco;
+        border-radius: 10px;
+        span{
+            font-weight: 500;
+        }
+        img{
+            max-width: 100%;
+        }
+    }
+
+    section#crear-nuevo{
+        form{
+            line-height: 2rem;
+            width: 50%;
+            input, select{
+                padding: 5px;
+                margin-bottom: 10px;
+                border: 1px solid $verdeOscuro;
+            }
+            label{
+                margin-top: 20px;
+                font-weight: 500;
+            }
+        }
+
+    }
+
+    section#modificar{
+        form{
+            line-height: 2rem;
+            width: 50%;
+            input, select{
+                padding: 5px;
+                border: 1px solid $verdeOscuro;
+            }
+            label{
+                margin-top: 20px;
+                font-weight: 500;
+            }
+        }
+    }
+}
