@@ -29,9 +29,22 @@ $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
                     <?php foreach ($clientes as $cliente) { ?>
                     <div class="tarjeta">
                         <h3><?=$cliente['nombre']?></h3>
-                        <img src="../img/<?=$cliente['foto']?>" alt="<?=$cliente['nombre']?>">
-                        <span><?=$cliente['nombre_dueno']?></span>
-
+                        <div class="imagen d-flex justify-content-center">
+                            <img src="../img/<?=$cliente['foto']?>" alt="<?=$cliente['nombre']?>">
+                        </div>
+                        <div class="contenido">
+                            <ul>
+                                <li>Teléfono dueño: <?=$cliente['telefono_dueno'] ?></li>
+                                <li>Dueño: <?=$cliente['nombre_dueno']?></li>
+                                <li>Edad: <?=$cliente['edad'] ?></li>
+                            </ul>
+                        </div>
+                        <div class="footer">
+                            <form action="borrar.php" method="post">
+                                <input type="hidden" name="id" value="<?=$cliente['id'] ?>">
+                                <input type="submit" value="Eliminar">
+                            </form>
+                        </div>
                     </div>
 
                     <?php } ?>
@@ -40,8 +53,8 @@ $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
             <section id="crear-nuevo" class="mt-5">
                 <h2>Añadir nuevo cliente</h2>
                 <form action="../crear.php" method="post" class="mt-3 d-flex flex-column">
-                    <input type="text" name="nombre" placeholder="Nombre del animal">
-                    <select name="tipo_animal">
+                    <input type="text" name="nombre" placeholder="Nombre del animal" required>
+                    <select name="tipo_animal" required>
                             <option value="0" selected disabled hidden>Selecciona el tipo de animal</option>
                             <option value="perro">Perro</option>
                             <option value="gato">Gato</option>
@@ -50,13 +63,13 @@ $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
                             <option value="pájaro">Pájaro</option>
                             <option value="otro">Otro</option>
                     </select>
-                    <input type="number" name="edad" min='0' max='20' placeholder='Edad'>
-                    <input type="text" name="nombre_dueno" placeholder="Nombre del dueño">
-                    <input type="password" name="contrasena" placeholder="Contraseña">
-                    <input type="tel" name="telefono_dueno" placeholder="Teléfono">
-                    <input type="file" name="foto">
-                    <input type="hidden" name="tipo" value="clientes">
-                    <input type="submit" class="button" value="Añadir">
+                    <input type="number" name="edad" min='0' max='20' placeholder='Edad' required>
+                    <input type="text" name="nombre_dueno" placeholder="Nombre del dueño" required>
+                    <input type="password" name="contrasena" placeholder="Contraseña" required>
+                    <input type="tel" name="telefono_dueno" placeholder="Teléfono" required>
+                    <input type="file" name="foto" required>
+                    <input type="hidden" name="tipo" value="clientes" required>
+                    <input type="submit" class="button" value="Añadir" required>
                 </form>
             </section>
 

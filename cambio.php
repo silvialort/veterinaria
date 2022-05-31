@@ -10,6 +10,7 @@ if ($tipo == 'servicios') {
 }elseif ($tipo == 'clientes') {
     $condicion = 'id=:id';
 }
+
 unset($_POST['tipo']);
 update(array_filter($_POST, fn($value)=>$value !== ''), $tipo, $condicion, $gbd);
 

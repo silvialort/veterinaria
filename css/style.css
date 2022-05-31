@@ -55,15 +55,20 @@ main#administracion div.contenedor {
   gap: 20px; }
 
 main#administracion div.contenedor > div.tarjeta {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
   background-color: #A8BFAA;
   padding: 20px;
   max-width: 250px;
   color: #F2F2F2;
   border-radius: 10px; }
-  main#administracion div.contenedor > div.tarjeta span {
-    font-weight: 500; }
+  main#administracion div.contenedor > div.tarjeta ul {
+    list-style: none;
+    padding: 20px 0; }
   main#administracion div.contenedor > div.tarjeta img {
-    max-width: 100%; }
+    max-width: 80%; }
 
 main#administracion section#crear-nuevo form {
   line-height: 2rem;
