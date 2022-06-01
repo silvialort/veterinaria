@@ -1,4 +1,4 @@
-<?php include_once '../mod/headerAdmin.php'; ?>
+<?php include_once 'headerAdmin.php'; ?>
 
 <main id="administracion" class="container-fluid">
     <div class="row">

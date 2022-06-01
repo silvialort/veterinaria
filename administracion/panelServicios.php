@@ -1,4 +1,4 @@
-<?php include_once '../mod/headerAdmin.php';
+<?php include_once 'headerAdmin.php';
 
 $stmt = $gbd->prepare('SELECT * FROM servicios');
 $stmt->execute();

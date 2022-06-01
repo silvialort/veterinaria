@@ -48,6 +48,16 @@ main#index{
     }
 }
 
+main#login{
+    input{
+        max-width: 60%;
+        &[type="submit" i]{
+            max-width: 20%;
+            cursor: pointer;
+        }
+    }
+}
+
 main#administracion{
     .row{
         min-height: 100vh;

@@ -17,7 +17,7 @@
 <header id="header">
     <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Veterinario</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,8 +25,7 @@
         <div class="navbar-nav">
             <a class="nav-link" href="#">Productos</a>
             <a class="nav-link" href="#">Servicios</a>
-            <a class="nav-link" href="#">Pedir cita</a>
-            <a href="./administracion/panelAdministracion.php" class="nav-link">Iniciar sesión como administrador</a>
+            <a href="./iniciarSesion.php" class="nav-link">Iniciar sesión como administrador</a>
         </div>
         </div>
     </div>

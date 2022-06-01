@@ -35,6 +35,12 @@ header#header {
 main#index section {
   min-height: 60vh; }
 
+main#login input {
+  max-width: 60%; }
+  main#login input[type="submit" i] {
+    max-width: 20%;
+    cursor: pointer; }
+
 main#administracion .row {
   min-height: 100vh; }
   main#administracion .row #navegacion {

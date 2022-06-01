@@ -6,7 +6,6 @@
     </section>
     <section id="servicios">
         <h2>Nuestros servicios</h2>
-        <a href="">Solicita cita</a>
     </section>
     <section id="productos">
         <h2>Productos destacados</h2>
