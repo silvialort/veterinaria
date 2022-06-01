@@ -25,7 +25,7 @@
         <div class="navbar-nav">
             <a class="nav-link" href="#">Productos</a>
             <a class="nav-link" href="#">Servicios</a>
-            <a href="./iniciarSesion.php" class="nav-link">Iniciar sesión como administrador</a>
+            <a href="iniciarSesion.php" class="nav-link">Iniciar sesión como administrador</a>
         </div>
         </div>
     </div>

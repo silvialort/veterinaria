@@ -2,27 +2,32 @@
 
 $tipo = $_POST['tipo'];
 
-$condicion = "default";
+// $condicion = "default";
 
 unset($_POST['tipo']);
-create(array_filter($_POST, fn($value)=>$value !== ''), $tipo, $condicion, $gbd);
+create(array_filter($_POST, fn($value)=>$value !== ''), $tipo,  $gbd);
 
-function create (array $params = [], string $tabla, $condicion, $gbd){
+function create (array $params = [], string $tabla,  $gbd){
     $locations = [
         "servicios" => 'Location: ./administracion/panelServicios.php',
         "productos" => 'Location: ./administracion/panelProductos.php',
         "clientes" => 'Location: ./administracion/panelClientes.php',
+        "citas" => 'Location: ./administracion/panelCitas.php',
     ];
 
     $campos = "";
-    foreach ($params as $field){
-        $campos .= "'".$field."'" . ",";
+    $valores = "";
+    foreach ($params as $key => $field){
+        $campos .= $key . ",";
+        $valores .= "'".$field."'" . ",";
     }
 
-    $query = ("INSERT INTO ".$tabla." VALUES ($condicion," . rtrim( $campos, ',') .")");
+    $query = ("INSERT INTO ".$tabla." (" . rtrim( $campos, ',') .") VALUES (" . rtrim( $valores, ',') .")");
 
     $stmt = $gbd->prepare($query);
 
+
+    // echo "<pre>".var_export($query,1)."</pre>"; exit;
 
     $stmt->execute();
 

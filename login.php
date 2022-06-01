@@ -14,7 +14,6 @@ if ($stmt-> rowCount() > 0) {
     if($administrador['contrasena'] == $contrasena){
         session_start();
         $_SESSION['usuario'] = $administrador['usuario'];
-        $_SESSION['contrasena'] = $administrador['contrasena'];
         header('Location: ./administracion/panelAdministracion.php');
     }else{
         header('Location: ./administracion/iniciarSesion.php');

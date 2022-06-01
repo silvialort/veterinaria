@@ -3,6 +3,8 @@
 $stmt = $gbd->prepare('SELECT * FROM productos');
 $stmt->execute();
 
+
+
 $productos = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
 
 <main id="administracion" class="container-fluid">
@@ -19,6 +21,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
                 <div class="buscador">
                     <form action="../buscar.php" method="get">
                         <input type="text" name="producto" placeholder="Busca un producto">
+                        <input type="number" name="precio" placeholder="Busca precio" min='1' max='999' step='0.05'>
                         <input type="hidden" name="tipo" value="productos">
                         <input type="submit" class="button" value="Enviar">
                     </form>
@@ -26,8 +29,17 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
                 <div class="contenedor mt-5">
                     <?php foreach ($productos as $producto) { ?>
                     <div class="tarjeta">
-                        <h3><?=$producto['nombre']?></h3>
-                        <span><?=$producto['precio']?> €</span>
+                        <div class="contenido">
+                            <h3><?=$producto['nombre']?></h3>
+                            <span><?=$producto['precio']?> €</span>
+                        </div>
+                        <div class="footer">
+                            <form action="../borrar.php" method="post">
+                                <input type="hidden" name="id" value="<?=$producto['id_producto'] ?>">
+                                <input type="hidden" name="tipo" value="productos">
+                                <input type="submit" value="Eliminar">
+                            </form>
+                        </div>
 
                     </div>
 

@@ -1,4 +1,7 @@
-<?php include_once 'headerAdmin.php'; ?>
+<?php include_once 'headerAdmin.php';
+
+?>
+
 
 <main id="administracion" class="container-fluid">
     <div class="row">
@@ -9,8 +12,8 @@
             <a href="panelServicios.php">Servicios</a>
             <a href="panelCitas.php">Citas</a>
         </div>
-        <div class="col-10" id='cuerpo'>
-            <?= 'Hola, '.$_SESSION['usuario'].'';?>
+        <div class="col-10 my-5 px-5" id='cuerpo'>
+            <h1>Hola, <?= $_SESSION['usuario'] ?></h1>
         </div>
     </div>
 </main>

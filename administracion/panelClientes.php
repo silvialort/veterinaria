@@ -1,5 +1,6 @@
 <?php include_once 'headerAdmin.php';
 
+
 $stmt = $gbd->prepare('SELECT * FROM clientes');
 $stmt->execute();
 
@@ -20,7 +21,7 @@ $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
                     <form action="../buscar.php" method="get">
                         <input type="text" name="nombre" placeholder="Buscar al animal">
                         <input type="text" name="nombre_dueno" placeholder="Buscar al dueño">
-                        <input type="date" name="fecha_cita">
+                        <input type="tel" name="telefono_dueno" placeholder="Buscar teléfono del dueño">
                         <input type="hidden" name="tipo" value="clientes">
                         <input type="submit" class="button" value="Enviar">
                     </form>
@@ -40,8 +41,9 @@ $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
                             </ul>
                         </div>
                         <div class="footer">
-                            <form action="borrar.php" method="post">
+                            <form action="../borrar.php" method="post">
                                 <input type="hidden" name="id" value="<?=$cliente['id'] ?>">
+                                <input type="hidden" name="tipo" value="clientes">
                                 <input type="submit" value="Eliminar">
                             </form>
                         </div>

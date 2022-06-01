@@ -29,9 +29,18 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="contenedor mt-5">
                     <?php foreach ($servicios as $servicio) { ?>
                     <div class="tarjeta">
-                        <h3><?=$servicio['descripcion_servicio']?></h3>
-                        <p><?=$servicio['duracion_servicio']?></p>
-                        <span><?=$servicio['precio_servicio']?> €</span>
+                        <div class="contenido">
+                            <h3><?=$servicio['descripcion_servicio']?></h3>
+                            <p><?=$servicio['duracion_servicio']?></p>
+                            <span><?=$servicio['precio_servicio']?> €</span>
+                        </div>
+                        <div class="footer">
+                            <form action="../borrar.php" method="post">
+                                <input type="hidden" name="id" value="<?=$servicio['cod_servicio'] ?>">
+                                <input type="hidden" name="tipo" value="servicios">
+                                <input type="submit" value="Eliminar">
+                            </form>
+                        </div>
 
                     </div>
 
