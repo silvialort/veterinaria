@@ -9,9 +9,12 @@ if ($tipo == 'servicios') {
     $condicion = 'id_producto=:id_producto';
 }elseif ($tipo == 'clientes') {
     $condicion = 'id=:id';
+}elseif ($tipo == 'citas') {
+    $condicion = 'cod_mascota=:cod_mascota';
 }
 
 unset($_POST['tipo']);
+
 update(array_filter($_POST, fn($value)=>$value !== ''), $tipo, $condicion, $gbd);
 
 
@@ -22,6 +25,7 @@ function update (array $params = [], string $tabla, string $condicion, $gbd)
         "servicios" => 'Location: ./administracion/panelServicios.php',
         "productos" => 'Location: ./administracion/panelProductos.php',
         "clientes" => 'Location: ./administracion/panelClientes.php',
+        "citas" => 'Location: ./administracion/panelCitas.php',
     ];
 
     // creamos la cadena con los campos que afectan a la consulta
@@ -40,7 +44,7 @@ function update (array $params = [], string $tabla, string $condicion, $gbd)
 
     foreach ($params as $key => &$field){
         $stmt->bindParam(":".$key, $field);
-        echo $key.$field;
+    
     }
 
 

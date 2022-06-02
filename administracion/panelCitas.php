@@ -68,8 +68,11 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         <div class="footer">
                             <form action="../borrar.php" method="post">
-                                <input type="hidden" name="cod_mascota" value="cod_mascota">
-                                <input type="hidden" name="cod_servicio" value="cod_servicio">
+                                <input type="hidden" name="cod_mascota" value="<?= $cita['cod_mascota'] ?>">
+                                <input type="hidden" name="cod_servicio" value="<?= $cita['cod_servicio'] ?>">
+                                <input type="hidden" name="fecha_cita" value="<?= $cita['fecha_cita'] ?>">
+                                <input type="hidden" name="hora_cita" value="<?= $cita['hora_cita'] ?>">
+                                <input type="hidden" name="tipo" value="citas">
                                 <input type="submit" value="Eliminar">
                             </form>
                         </div>
@@ -112,8 +115,8 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </select>
                     <select name="cod_servicio">
                             <option value="0" selected disabled hidden>Selecciona el servicio</option>
-                            <?php foreach ($citas as $cita) { ?>
-                            <option value="<?= $cita['cod_servicio'] ?>"><?= $cita['descripcion_servicio'] ?></option>
+                            <?php foreach ($servicios as $servicio) { ?>
+                            <option value="<?= $servicio['cod_servicio'] ?>"><?= $servicio['descripcion_servicio'] ?></option>
                             <?php } ?>
                     </select>
                     <input type="date" name="fecha_cita">
