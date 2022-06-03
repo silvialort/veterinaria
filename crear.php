@@ -27,7 +27,7 @@ function create (array $params = [], string $tabla,  $gbd){
     $stmt = $gbd->prepare($query);
 
 
-    // echo "<pre>".var_export($query,1)."</pre>"; exit;
+
 
     $stmt->execute();
 

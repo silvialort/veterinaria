@@ -38,7 +38,7 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="buscador">
                     <form action="../buscar.php" method="get">
                         <input type="date" name="fecha_cita">
-                        <select name="id">
+                        <select name="cod_mascota">
                             <option value="0" selected disabled hidden>Selecciona el cliente</option>
                             <?php foreach ($citas as $cita) { ?>
                                 <option value="<?= $cita['cod_mascota'] ?>"><?= $cita['nombre'] ?></option>
@@ -51,6 +51,7 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php } ?>
 
                         </select>
+                        <input type="hidden" name="tipo" value="citas">
                         <input type="submit" class="button" value="Enviar">
                     </form>
                 </div>
@@ -107,19 +108,23 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h2>Modificar cita existente</h2>
 
                 <form action="../cambio.php" method="post" class="mt-3 d-flex flex-column w-40">
+                    <label for="cod_mascota">Mascota</label>
                     <select name="cod_mascota">
                             <option value="0" selected disabled hidden>Selecciona el cliente</option>
                         <?php foreach ($citas as $cita) { ?>
-                            <option value="<?= $cita['cod_mascota'] ?>"><?= $cita['nombre'] ?></option>
+                            <option value="<?= $cita['cod_mascota'] ?>"><?= $cita['nombre'] ?> <?= date("d-m-Y", strtotime($cita['fecha_cita'])); ?> </option>
                         <?php } ?>
                     </select>
+                    <label for="cod_servicio">Servicio</label>
                     <select name="cod_servicio">
                             <option value="0" selected disabled hidden>Selecciona el servicio</option>
                             <?php foreach ($servicios as $servicio) { ?>
                             <option value="<?= $servicio['cod_servicio'] ?>"><?= $servicio['descripcion_servicio'] ?></option>
                             <?php } ?>
                     </select>
+                    <label for="fecha_cita">Fecha de la cita</label>
                     <input type="date" name="fecha_cita">
+                    <label for="hora_cita">Hora de la cita</label>
                     <input type="time" name="hora_cita">
                     <input type="hidden" name="tipo" value="citas">
                     <input type="submit" class="button" value="Modificar">

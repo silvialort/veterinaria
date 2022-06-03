@@ -14,12 +14,14 @@ if ($stmt-> rowCount() > 0) {
     if($administrador['contrasena'] == $contrasena){
         session_start();
         $_SESSION['usuario'] = $administrador['usuario'];
-        header('Location: ./administracion/panelAdministracion.php');
+        echo "Ha iniciado sesión con éxito. Redirigiendo...";
+        header('refresh: 3; url= ./administracion/panelAdministracion.php');
     }else{
-        header('Location: ./administracion/iniciarSesion.php');
+        echo "La contraseña no es correcta. Inténtelo de nuevo.";
+        header('refresh: 4; url= ./iniciarSesion.php');
     }
 }else{
-    header('Location: ./administracion/iniciarSesion.php');
+    header('Location: ./iniciarSesion.php');
 }
 
 ?>

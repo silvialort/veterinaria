@@ -21,7 +21,7 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <section id="buscador">
                 <div class="buscador">
                     <form action="../buscar.php" method="get">
-                        <input type="text" name="servicio" placeholder="Busca servicio">
+                        <input type="text" name="descripcion_servicio" placeholder="Busca servicio">
                         <input type="hidden" name="tipo" value="servicios">
                         <input type="submit" class="button" value="Enviar">
                     </form>
@@ -36,7 +36,7 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         <div class="footer">
                             <form action="../borrar.php" method="post">
-                                <input type="hidden" name="id" value="<?=$servicio['cod_servicio'] ?>">
+                                <input type="hidden" name="cod_servicio" value="<?=$servicio['cod_servicio'] ?>">
                                 <input type="hidden" name="tipo" value="servicios">
                                 <input type="submit" value="Eliminar">
                             </form>
@@ -50,13 +50,13 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <section id="crear-nuevo" class="mt-5">
                 <h2>Crear nuevo servicio</h2>
                 <form action="../crear.php" method="post" class="mt-3 d-flex flex-column">
-                    <label for="descripcion">Descripción</label>
-                    <input type="text" name="descripcion" placeholder="Descripción del servicio">
+                    <label for="descripcion_servicio">Descripción</label>
+                    <input type="text" name="descripcion_servicio" placeholder="Descripción del servicio">
                     <input type="hidden" name="tipo" value="servicios">
-                    <label for="duracion">Duración</label>
-                    <input type="text" name="duracion" placeholder="Duración del servicio">
-                    <label for="precio">Precio</label>
-                    <input type="number" name="precio" min='1' max='999' step='0.10'>
+                    <label for="duracion_servicio">Duración</label>
+                    <input type="text" name="duracion_servicio" placeholder="Duración del servicio">
+                    <label for="precio_servicio">Precio</label>
+                    <input type="number" name="precio_servicio" min='1' max='999' step='0.10'>
                     <input type="submit" class="button" value="Crear">
                 </form>
             </section>

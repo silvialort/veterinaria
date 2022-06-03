@@ -20,7 +20,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
             <section id="buscador">
                 <div class="buscador">
                     <form action="../buscar.php" method="get">
-                        <input type="text" name="producto" placeholder="Busca un producto">
+                        <input type="text" name="nombre" placeholder="Busca un producto">
                         <input type="number" name="precio" placeholder="Busca precio" min='1' max='999' step='0.05'>
                         <input type="hidden" name="tipo" value="productos">
                         <input type="submit" class="button" value="Enviar">
@@ -35,7 +35,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
                         </div>
                         <div class="footer">
                             <form action="../borrar.php" method="post">
-                                <input type="hidden" name="id" value="<?=$producto['id_producto'] ?>">
+                                <input type="hidden" name="id_producto" value="<?=$producto['id_producto'] ?>">
                                 <input type="hidden" name="tipo" value="productos">
                                 <input type="submit" value="Eliminar">
                             </form>
