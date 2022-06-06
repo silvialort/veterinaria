@@ -7,7 +7,6 @@ if ($_SESSION['usuario'] == null) {
 }
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -25,15 +24,15 @@ if ($_SESSION['usuario'] == null) {
 </head>
 <body>
 <header id="header">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-md">
     <div class="container-fluid">
         <a class="navbar-brand" href="../index.php">Veterinario</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="menu">
+        <div class="collapse navbar-collapse justify-content-end" id="menu">
         <div class="navbar-nav">
-
+            <a href="../logout.php">Cerrar sesión</a>
         </div>
         </div>
     </div>

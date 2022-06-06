@@ -1,11 +1,17 @@
 <?php include_once 'headerAdmin.php';
 
+if (!empty($_SESSION['busqueda'])) {
+    $busqueda = $_SESSION['busqueda'];
+    unset($_SESSION['busqueda']);
+}
 
-$stmt = $gbd->prepare('SELECT * FROM clientes');
-$stmt->execute();
+    $stmt = $gbd->prepare('SELECT * FROM clientes');
+    $stmt->execute();
 
-$clientes = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
+    $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    $busqueda = $busqueda ?? $clientes;
+?>
 <main id="administracion" class="container-fluid">
     <div class="row">
         <div class="col-2" id='navegacion'>
@@ -27,7 +33,7 @@ $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
                     </form>
                 </div>
                 <div class="contenedor mt-5">
-                    <?php foreach ($clientes as $cliente) { ?>
+                    <?php foreach ($busqueda as $cliente) { ?>
                     <div class="tarjeta">
                         <h3><?=$cliente['nombre']?></h3>
                         <div class="imagen d-flex justify-content-center">

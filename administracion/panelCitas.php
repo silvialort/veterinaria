@@ -1,13 +1,18 @@
 <?php include_once 'headerAdmin.php';
 
+if (!empty($_SESSION['busqueda'])) {
+    $busqueda = $_SESSION['busqueda'];
+    unset($_SESSION['busqueda']);
+}
 
 $stmt = $gbd->prepare('SELECT * FROM citas INNER JOIN clientes ON citas.cod_mascota = clientes.id INNER JOIN servicios ON citas.cod_servicio = servicios.cod_servicio');
-
 $stmt->execute();
 
-
 $citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// echo "<pre>".var_export($citas,1)."</pre>"; exit;
+
+$busqueda = $busqueda ?? $citas;
+
+
 
 $stmt = $gbd->prepare('SELECT id, nombre FROM clientes');
 $stmt->execute();
@@ -40,14 +45,14 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <input type="date" name="fecha_cita">
                         <select name="cod_mascota">
                             <option value="0" selected disabled hidden>Selecciona el cliente</option>
-                            <?php foreach ($citas as $cita) { ?>
-                                <option value="<?= $cita['cod_mascota'] ?>"><?= $cita['nombre'] ?></option>
+                            <?php foreach ($clientes as $cliente) { ?>
+                                <option value="<?= $cliente['id'] ?>"><?= $cliente['nombre'] ?></option>
                             <?php } ?>
                         </select>
                         <select name="cod_servicio">
                             <option value="0" selected disabled hidden>Selecciona el servicio</option>
-                            <?php foreach ($citas as $cita) { ?>
-                                <option value="<?= $cita['cod_servicio'] ?>"><?= $cita['descripcion_servicio'] ?></option>
+                            <?php foreach ($servicios as $servicio) { ?>
+                                <option value="<?= $servicio['cod_servicio'] ?>"><?= $servicio['descripcion_servicio'] ?></option>
                             <?php } ?>
 
                         </select>
@@ -56,7 +61,7 @@ $servicios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </form>
                 </div>
                 <div class="contenedor mt-5">
-                    <?php foreach ($citas as $cita) { ?>
+                    <?php foreach ($busqueda as $cita) { ?>
                     <div class="tarjeta">
                         <div class="contenido">
                             <ul>

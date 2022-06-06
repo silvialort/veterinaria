@@ -14,11 +14,65 @@ input{
         cursor: pointer;
     }
 }
+select{
+    padding: 5px;
+    border: 1px solid $verdeOscuro;
+}
 label{
     margin-top: 20px;
     font-weight: 500;
 }
 
+
+main#index{
+    section{
+        min-height: 40vh;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: flex-start;
+        align-items: space-between;
+
+    }
+    section#banner{
+        min-height: 95vh;
+        background: url(../img/banner.jpg) center center no-repeat;
+        box-shadow: inset 0 0 0 1000px rgba(253, 253, 253, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h1{
+            color: $blanco;
+            font-size: 5rem;
+        }
+    }
+    div.contenedor{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        gap: 20px;
+
+    }
+    div.contenedor > div.tarjeta{
+        display: flex;
+        flex-flow: column wrap;
+        background-color: $verdeOscuro;
+        padding: 30px;
+        width: 250px;
+        color: $blanco;
+        border-radius: 10px;
+        img{
+            max-width: 80%;
+        }
+    }
+
+    section#mascotas > div.contenedor > div.tarjeta{
+        align-items: center;
+        p{
+            font-weight: 500;
+            font-size: 1.6rem;
+        }
+    }
+}
 
 .button{
     background-color: $verdeClaro;
@@ -39,12 +93,6 @@ header#header{
     background-color: $negro;
     a{
         color: $blanco;
-    }
-}
-
-main#index{
-    section{
-        min-height: 60vh;
     }
 }
 
@@ -105,9 +153,7 @@ main#administracion{
             line-height: 2rem;
             width: 50%;
             input, select{
-                padding: 5px;
                 margin-bottom: 10px;
-                border: 1px solid $verdeOscuro;
             }
             label{
                 margin-top: 20px;
@@ -121,10 +167,6 @@ main#administracion{
         form{
             line-height: 2rem;
             width: 50%;
-            input, select{
-                padding: 5px;
-                border: 1px solid $verdeOscuro;
-            }
             label{
                 margin-top: 20px;
                 font-weight: 500;

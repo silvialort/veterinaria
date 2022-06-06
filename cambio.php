@@ -44,9 +44,9 @@ function update (array $params = [], string $tabla, string $condicion, $gbd)
 
     foreach ($params as $key => &$field){
         $stmt->bindParam(":".$key, $field);
-    
-    }
 
+    }
+    // echo "<pre>".var_export($stmt,1)."</pre>"; exit;
 
     $stmt->execute();
 

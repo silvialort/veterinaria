@@ -1,11 +1,18 @@
 <?php include_once 'headerAdmin.php';
 
-$stmt = $gbd->prepare('SELECT * FROM productos');
-$stmt->execute();
+if (!empty($_SESSION['busqueda'])) {
+    $busqueda = $_SESSION['busqueda'];
+    unset($_SESSION['busqueda']);
+}
 
+    $stmt = $gbd->prepare('SELECT * FROM productos');
+    $stmt->execute();
 
+    $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$productos = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
+    $busqueda = $busqueda ?? $productos;
+
+?>
 
 <main id="administracion" class="container-fluid">
     <div class="row">
@@ -27,7 +34,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC); ?>
                     </form>
                 </div>
                 <div class="contenedor mt-5">
-                    <?php foreach ($productos as $producto) { ?>
+                    <?php foreach ($busqueda as $producto) { ?>
                     <div class="tarjeta">
                         <div class="contenido">
                             <h3><?=$producto['nombre']?></h3>

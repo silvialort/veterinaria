@@ -2,12 +2,16 @@
 
 $tipo = $_GET['tipo'];
 
-
 unset($_GET['tipo']);
-search(array_filter($_GET, fn($value)=>$value !== ''), $tipo, $gbd);
+
+if ($tipo == 'citas'){
+    searchCita(array_filter($_GET, fn($value)=>$value !== ''), $gbd);
+}else{
+    search(array_filter($_GET, fn($value)=>$value !== ''), $tipo, $gbd);
+}
+
+
 function search (array $params = [], string $tabla, $gbd) {
-
-
 
     $condiciones = "";
 
@@ -16,30 +20,52 @@ function search (array $params = [], string $tabla, $gbd) {
     }
 
     $query = ("SELECT * FROM $tabla WHERE ". rtrim( $condiciones, 'AND ' ) ."");
-    // echo "<pre>".var_export($query,1)."</pre>"; exit;
     $stmt = $gbd->prepare($query);
+
     foreach ($params as $key => $field){
-        $stmt->bindParam(":".$key, $field);
+        // Se ha probado en un primer momento con bindParam, pero construía los parámetros mal
+        // $stmt->bindParam(":".$key, $field);
+        $parametros[":".$key] = $field;
     }
 
+    $stmt->execute($parametros);
+
+    // $stmt->debugDumpParams();
+
+    // echo "<pre>".var_export($stmt,1)."</pre>"; exit;
+    $busqueda = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    session_start();
+    $_SESSION['busqueda'] = $busqueda;
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 
-    // $stmt = $gbd->prepare("SELECT * FROM $tabla WHERE descripcion_servicio LIKE CONCAT( '%', :servicio, '%')");
-    // $stmt->bindParam(':servicio', $servicio);
-    $stmt->execute();
+}
+
+function searchCita (array $params = [], $gbd)
+{
+    $condiciones = "";
+
+    foreach ($params as $key => $field) {
+        $condiciones .= 'citas.' . $key . " = :$key AND ";
+    }
+    $stmt = $gbd->prepare("SELECT * FROM citas, clientes, servicios WHERE ". rtrim( $condiciones, 'AND ' ) . " AND citas.cod_mascota = clientes.id AND citas.cod_servicio = servicios.cod_servicio");
+
+    foreach ($params as $key => $field){
+
+        $parametros[":".$key] = $field;
+    }
+
+    $stmt->execute($parametros);
+
+    // $stmt->debugDumpParams();
+
 
     $busqueda = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if ($stmt-> rowCount() > 0) {
-        echo "<pre>";
-        var_dump($busqueda);
-        echo "</pre>";
-    }else{
-        echo "No se han encontrado resultados.";
-        header('refresh: 2; url= ./administracion/panelCitas.php');
-    }
-
-
+    session_start();
+    $_SESSION['busqueda'] = $busqueda;
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
 
